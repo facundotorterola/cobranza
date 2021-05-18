@@ -1,8 +1,10 @@
 package com.uy.cobranza.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,9 +23,15 @@ public class Client {
     @Column(name="type")
     private String type;
 
-   @Column(name = "country_iso")
+    @Column(name = "country_iso")
     private String countryIso;
 
+
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "client_code")
+    private List<Transaction> transactions;
 
 
 }
