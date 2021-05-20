@@ -21,7 +21,7 @@ public class Processor {
     private Double limit;
 
     @ManyToMany
-    private List<Merchants> merchants;
+    private List<Merchant> merchants;
 
 
     @JsonIgnore

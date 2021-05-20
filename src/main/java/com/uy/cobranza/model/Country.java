@@ -24,11 +24,50 @@ public class Country {
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "coutry_iso")
-    List<Client> clientList;
+    private List<Client> clientList;
 
 
     @JsonIgnore
     @ManyToMany
-    List<Merchants> merchants;
+    private List<Merchant> merchants;
 
+    public String getIsoCode() {
+        return isoCode;
+    }
+
+    public void setIsoCode(String isoCode) {
+        this.isoCode = isoCode;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public List<Merchant> getMerchants() {
+        return merchants;
+    }
+
+    public void setMerchants(List<Merchant> merchants) {
+        this.merchants = merchants;
+    }
 }
