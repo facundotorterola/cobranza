@@ -9,6 +9,7 @@ import com.uy.cobranza.params.MerchantParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class MerchantServiceImpl implements  MerchantService {
     private CountryDao countryDao;
 
     @Override
+    @Transactional
     public void addMerchant(MerchantParams merchantParams) throws NegocioException{
         Merchant merchant = new Merchant();
         merchant.setCode(merchantParams.getCode());

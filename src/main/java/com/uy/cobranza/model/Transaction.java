@@ -13,8 +13,9 @@ public class Transaction {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    @CreatedDate
+    @Column(name = "creation_date", nullable = false, updatable = false)
+    private Date creationDate;
 
 
     @Column(name = "amount")

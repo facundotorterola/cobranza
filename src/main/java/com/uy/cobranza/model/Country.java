@@ -23,12 +23,12 @@ public class Country {
 
     @JsonIgnore
     @OneToMany
-    @JoinColumn(name = "coutry_iso")
+    @JoinColumn(name = "country_iso")
     private List<Client> clientList;
 
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(mappedBy = "countries")
     private List<Merchant> merchants;
 
     public String getIsoCode() {

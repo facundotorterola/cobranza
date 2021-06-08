@@ -11,7 +11,7 @@ import java.util.List;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="number")
     private Integer number ;
 
     @Column(name = "name")

@@ -29,7 +29,7 @@ public class Merchant {
     private List<Country> countries;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(mappedBy = "merchants")
     private List<Processor> processors;
 
     @JsonIgnore

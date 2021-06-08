@@ -3,6 +3,7 @@ package com.uy.cobranza.service;
 import com.uy.cobranza.dao.CountryDao;
 import com.uy.cobranza.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,6 +33,7 @@ public class CountryServiceImpl implements CountrySerivce {
     }
 
     @Override
+    @Cacheable("countries")
     public List<Country> listCountries() {
         return countryDao.findAll();
     }
