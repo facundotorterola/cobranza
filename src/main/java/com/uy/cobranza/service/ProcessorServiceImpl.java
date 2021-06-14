@@ -6,11 +6,13 @@ import com.uy.cobranza.exception.NegocioException;
 import com.uy.cobranza.model.Merchant;
 import com.uy.cobranza.model.Processor;
 import com.uy.cobranza.params.ProcessorParams;
+import com.uy.cobranza.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +32,22 @@ public class ProcessorServiceImpl  implements  ProcessorService{
     }
 
     @Override
+    public List<ProcessorDao.ProcessorDTO> listProcessorsCloseOutOfBalance(Integer delta) {
+        Date today = new Date();
+        String todayStr = DateUtils.formatDateWithoutHour(today);
+        Date tomorrow = DateUtils.getTomorrow();
+        String tomorrowStr= DateUtils.formatDateWithoutHour(tomorrow);
+
+        return processorDao.getProcessorsCloseToRunningOutOfBalance(todayStr,tomorrowStr,delta);
+
+    }
+
+    @Override
     public Optional<Processor> getProcessor(String code) {
         return processorDao.findById(code);
     }
+
+
 
     @Override
     @Transactional
@@ -56,6 +71,9 @@ public class ProcessorServiceImpl  implements  ProcessorService{
 
         processorDao.save(processor);
     }
+
+
+
 
     @Override
     public void deleteProcessor(Processor processor) {

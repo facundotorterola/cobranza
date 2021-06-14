@@ -21,7 +21,8 @@ public class Client {
     private String email;
 
     @Column(name="type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ClientType type;
 
     @Column(name = "country_iso")
     private String countryIso;

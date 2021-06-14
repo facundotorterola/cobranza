@@ -17,4 +17,11 @@ public class DateUtils {
         tomorrow.setDate(today.getDate()+1);
         return tomorrow;
     }
+
+    public static Date getDateOfFirstDayInMonth(Integer month){
+        Date date = new Date();
+        date.setMonth(month);
+        date.setDate(1);
+        return date;
+    }
 }
