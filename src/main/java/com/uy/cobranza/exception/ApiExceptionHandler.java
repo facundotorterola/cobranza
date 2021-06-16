@@ -11,8 +11,8 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(value = {NegocioException.class})
-    public ResponseEntity<Object> handleNegocioException(NegocioException e) {
+    @ExceptionHandler(value = {BusinessException.class})
+    public ResponseEntity<Object> handleNegocioException(BusinessException e) {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
         ApiException responseException = new ApiException(e.getMessage(),e, badRequest, ZonedDateTime.now(ZoneId.of("Z")));
         return  new ResponseEntity<>(responseException,badRequest);

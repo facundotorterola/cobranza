@@ -2,7 +2,7 @@ package com.uy.cobranza.controller;
 
 
 import com.uy.cobranza.dao.ProcessorDao;
-import com.uy.cobranza.exception.NegocioException;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Processor;
 import com.uy.cobranza.params.ProcessorParams;
 import com.uy.cobranza.service.ProcessorService;
@@ -41,7 +41,7 @@ public class ProcessorController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void save(@RequestBody ProcessorParams processorParams) throws NegocioException {
+    public void save(@RequestBody ProcessorParams processorParams) throws BusinessException {
         processorService.addProcessor(processorParams);
     }
 }

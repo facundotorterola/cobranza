@@ -1,8 +1,7 @@
 package com.uy.cobranza.service;
 
-import com.uy.cobranza.dao.MerchantDao;
 import com.uy.cobranza.dao.ProcessorDao;
-import com.uy.cobranza.exception.NegocioException;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Merchant;
 import com.uy.cobranza.model.Processor;
 import com.uy.cobranza.params.ProcessorParams;
@@ -11,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProcessorServiceImpl  implements  ProcessorService{
@@ -24,7 +20,7 @@ public class ProcessorServiceImpl  implements  ProcessorService{
 
 
     @Autowired
-    MerchantDao merchantDao;
+    MerchantService merchantService;
 
     @Override
     public List<Processor> listProcessors() {
@@ -42,16 +38,22 @@ public class ProcessorServiceImpl  implements  ProcessorService{
 
     }
 
+
+
     @Override
     public Optional<Processor> getProcessor(String code) {
         return processorDao.findById(code);
     }
 
+    @Override
+    public Map<String, Double> getTheSumOfAmountOfTransactionsForAProcessor(String processorCode, String sinceDateStr, String untilDateStr) {
+        return processorDao.getTheSumOfAmountOfTransactionsForAProcessor(processorCode,sinceDateStr,untilDateStr);
+    }
 
 
     @Override
     @Transactional
-    public void addProcessor(ProcessorParams processorParams) throws NegocioException {
+    public void addProcessor(ProcessorParams processorParams) throws BusinessException {
         Processor processor = new Processor();
         processor.setCode(processorParams.getCode());
         processor.setName(processorParams.getName());
@@ -60,9 +62,9 @@ public class ProcessorServiceImpl  implements  ProcessorService{
         List<Merchant> merchantList = new ArrayList<>();
 
         for (String merchantCode: processorParams.getMerchantCodes()) {
-            Optional<Merchant> merchant = merchantDao.findById(merchantCode);
+            Optional<Merchant> merchant = merchantService.getMerchant(merchantCode);
             if (merchant.isEmpty()){
-                throw  new NegocioException("El merchant con code "+ merchantCode +" no existe");
+                throw  new BusinessException("El merchant con code "+ merchantCode +" no existe");
             }
             merchantList.add(merchant.get());
         }

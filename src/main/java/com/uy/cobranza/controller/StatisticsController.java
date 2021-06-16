@@ -1,7 +1,7 @@
 package com.uy.cobranza.controller;
 
 import com.uy.cobranza.dao.StatisticsDao;
-import com.uy.cobranza.exception.NegocioException;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Statistics;
 
 import com.uy.cobranza.service.statistics.StatisticsService;
@@ -28,36 +28,36 @@ public class StatisticsController {
     }
 
     @RequestMapping(value = "/calledMethods/{dateString}", method = RequestMethod.GET)
-    public List<StatisticsDao.StatisticsCallsMethodDto> listCalledMethods(@PathVariable("dateString") String dateString) throws NegocioException {
+    public List<StatisticsDao.StatisticsCallsMethodDto> listCalledMethods(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.listCalledMethods(dateString);
     }
 
     @RequestMapping(value = "/calledMethod/most/{dateString}", method = RequestMethod.GET)
-    public StatisticsDao.StatisticsCallsMethodDto getTheMostCalledMethod(@PathVariable("dateString") String dateString) throws NegocioException {
+    public StatisticsDao.StatisticsCallsMethodDto getTheMostCalledMethod(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.getTheMostCalledMethod(dateString);
     }
 
 
     @RequestMapping(value = "/calledMethod/least/{dateString}", method = RequestMethod.GET)
-    public StatisticsDao.StatisticsCallsMethodDto getTheLeastCalledMethod(@PathVariable("dateString") String dateString) throws NegocioException {
+    public StatisticsDao.StatisticsCallsMethodDto getTheLeastCalledMethod(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.getTheLeastCalledMethod(dateString);
     }
 
 
 
     @RequestMapping(value = "/runTimeAvg/{dateString}", method = RequestMethod.GET)
-    public List<StatisticsDao.StatisticsRunTimeAvgDto> listRunTimeAvg(@PathVariable("dateString") String dateString) throws NegocioException {
+    public List<StatisticsDao.StatisticsRunTimeAvgDto> listRunTimeAvg(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.listRunTimeAvg(dateString);
     }
 
     @RequestMapping(value = "/runTimeAvg/fastest/{dateString}", method = RequestMethod.GET)
-    public StatisticsDao.StatisticsRunTimeAvgDto getFastestRunTimeAvg(@PathVariable("dateString") String dateString) throws NegocioException {
+    public StatisticsDao.StatisticsRunTimeAvgDto getFastestRunTimeAvg(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.getFastestRunTimeAvg(dateString);
     }
 
 
     @RequestMapping(value = "/runTimeAvg/slowest/{dateString}", method = RequestMethod.GET)
-    public StatisticsDao.StatisticsRunTimeAvgDto getSlowerRunTimeAvg(@PathVariable("dateString") String dateString) throws NegocioException {
+    public StatisticsDao.StatisticsRunTimeAvgDto getSlowerRunTimeAvg(@PathVariable("dateString") String dateString) throws BusinessException {
         return statisticsService.getSlowerRunTimeAvg(dateString);
     }
 

@@ -1,9 +1,7 @@
 package com.uy.cobranza.service;
 
-import com.uy.cobranza.exception.NegocioException;
-import com.uy.cobranza.model.Processor;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Transaction;
-import com.uy.cobranza.params.ProcessorParams;
 import com.uy.cobranza.responses.TransactionMerchantReportResponse;
 import com.uy.cobranza.responses.TransactionProcessorReportResponse;
 
@@ -23,7 +21,7 @@ public interface TransactionService {
 
     Optional<Transaction> getTransaction(String code);
 
-    void addTransaction(Transaction transaction) throws NegocioException;
+    void addTransaction(Transaction transaction) throws BusinessException;
 
 
     void deleteTransaction(Transaction transaction);

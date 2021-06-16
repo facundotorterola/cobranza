@@ -24,7 +24,7 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private ClientType type;
 
-    @Column(name = "country_iso")
+    @Column(name = "country_iso", nullable = false)
     private String countryIso;
 
 

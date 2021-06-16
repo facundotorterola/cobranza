@@ -1,8 +1,7 @@
 package com.uy.cobranza.controller;
 
 
-import com.uy.cobranza.exception.NegocioException;
-import com.uy.cobranza.model.Client;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Transaction;
 import com.uy.cobranza.responses.TransactionMerchantReportResponse;
 import com.uy.cobranza.responses.TransactionProcessorReportResponse;
@@ -53,7 +52,7 @@ public class TransactionController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void save(@RequestBody Transaction transaction) throws NegocioException {
+    public void save(@RequestBody Transaction transaction) throws BusinessException {
         transactionService.addTransaction(transaction);
     }
 }

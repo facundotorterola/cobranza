@@ -1,5 +1,7 @@
 package com.uy.cobranza.service;
 
+import com.uy.cobranza.dao.ClientDao;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Client;
 
 import java.util.List;
@@ -10,7 +12,9 @@ public interface ClientService {
 
     Optional<Client> getClient(Integer id);
 
-    void addClient(Client client);
+    ClientDao.ClientTypeCountOfTransactionsDto getTheCountOfTransactionsByClient(Integer clientNumber, String sinceDateStr, String untilDateStr);
+
+    void addClient(Client client) throws BusinessException;
 
     void deleteClient(Client client);
 }

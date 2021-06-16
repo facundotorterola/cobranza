@@ -1,9 +1,8 @@
 package com.uy.cobranza.controller;
 
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Client;
-import com.uy.cobranza.model.Country;
 import com.uy.cobranza.service.ClientService;
-import com.uy.cobranza.service.CountrySerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class ClientController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void save(@RequestBody Client client) {
+    public void save(@RequestBody Client client) throws BusinessException {
         clientService.addClient(client);
     }
 

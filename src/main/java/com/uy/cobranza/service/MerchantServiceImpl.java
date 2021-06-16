@@ -1,8 +1,7 @@
 package com.uy.cobranza.service;
 
-import com.uy.cobranza.dao.CountryDao;
 import com.uy.cobranza.dao.MerchantDao;
-import com.uy.cobranza.exception.NegocioException;
+import com.uy.cobranza.exception.BusinessException;
 import com.uy.cobranza.model.Country;
 import com.uy.cobranza.model.Merchant;
 import com.uy.cobranza.params.MerchantParams;
@@ -21,11 +20,11 @@ public class MerchantServiceImpl implements  MerchantService {
     private MerchantDao merchantDao;
 
     @Autowired
-    private CountryDao countryDao;
+    private CountrySerivce countryService;
 
     @Override
     @Transactional
-    public void addMerchant(MerchantParams merchantParams) throws NegocioException{
+    public void addMerchant(MerchantParams merchantParams) throws BusinessException {
         Merchant merchant = new Merchant();
         merchant.setCode(merchantParams.getCode());
         merchant.setName(merchantParams.getName());
@@ -33,9 +32,9 @@ public class MerchantServiceImpl implements  MerchantService {
         merchant.setPersonFee(merchantParams.getPersonFee());
         List<Country> countries = new ArrayList<>();
         for (String countryIso: merchantParams.getCountryCodes()) {
-            Optional<Country> country = countryDao.findById(countryIso);
+            Optional<Country> country = countryService.getCountry(countryIso);
             if (country.isEmpty()){
-                throw new NegocioException("El pais "+countryIso+" no se encuentra en el sistema");
+                throw new BusinessException("El pais "+countryIso+" no se encuentra en el sistema");
             }
             countries.add(country.get());
         }
