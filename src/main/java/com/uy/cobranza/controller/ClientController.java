@@ -21,7 +21,7 @@ public class ClientController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Client> list() {
-        List<Client> clients = clientService.list();
+        List<Client> clients = clientService.listClients();
         return clients;
     }
 

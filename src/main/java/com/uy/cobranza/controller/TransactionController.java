@@ -25,7 +25,7 @@ public class TransactionController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Transaction> list() {
 
-        return transactionService.list();
+        return transactionService.listTransactions();
     }
 
 

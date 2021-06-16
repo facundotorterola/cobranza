@@ -13,7 +13,7 @@ public interface MerchantService {
 
     Optional<Merchant> getMerchant(String code);
 
-    List<Merchant> list();
+    List<Merchant> listMerchants();
 
     void delete(Merchant merchant);
 

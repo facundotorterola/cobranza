@@ -27,7 +27,7 @@ public class ProcessorServiceImpl  implements  ProcessorService{
     MerchantDao merchantDao;
 
     @Override
-    public List<Processor> list() {
+    public List<Processor> listProcessors() {
         return processorDao.findAll();
     }
 

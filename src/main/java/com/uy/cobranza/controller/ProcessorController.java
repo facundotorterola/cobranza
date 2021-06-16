@@ -23,7 +23,7 @@ public class ProcessorController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Processor> list(){
-        return processorService.list();
+        return processorService.listProcessors();
     }
 
     @RequestMapping(value = "/{code}",method = RequestMethod.GET)

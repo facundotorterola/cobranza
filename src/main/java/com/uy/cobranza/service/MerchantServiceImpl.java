@@ -51,7 +51,7 @@ public class MerchantServiceImpl implements  MerchantService {
     }
 
     @Override
-    public List<Merchant> list() {
+    public List<Merchant> listMerchants() {
         return merchantDao.findAll();
     }
 

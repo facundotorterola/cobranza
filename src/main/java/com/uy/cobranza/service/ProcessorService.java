@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ProcessorService {
 
-    List<Processor> list();
+    List<Processor> listProcessors();
 
     List<ProcessorDao.ProcessorDTO> listProcessorsCloseOutOfBalance(Integer delta);
 

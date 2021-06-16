@@ -24,7 +24,7 @@ public class MerchantController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Merchant> list(){
-        return merchantService.list();
+        return merchantService.listMerchants();
     }
 
     @RequestMapping(value = "/{code}",method = RequestMethod.GET)

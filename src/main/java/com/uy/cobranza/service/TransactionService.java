@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TransactionService {
-    List<Transaction> list();
+    List<Transaction> listTransactions();
 
     List<Transaction> listTransactionOnMonth(Integer monthNumber);
 
