@@ -8,6 +8,8 @@ import com.uy.cobranza.params.MerchantParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ public class MerchantServiceImpl implements  MerchantService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "merchants" , allEntries = true)
     public void addMerchant(MerchantParams merchantParams) throws BusinessException {
         Merchant merchant = new Merchant();
         merchant.setCode(merchantParams.getCode());
@@ -45,17 +48,20 @@ public class MerchantServiceImpl implements  MerchantService {
     }
 
     @Override
+    @Cacheable("merchants")
     public Optional<Merchant> getMerchant(String code) {
         return merchantDao.findById(code);
     }
 
     @Override
+    @Cacheable("merchants")
     public List<Merchant> listMerchants() {
         return merchantDao.findAll();
     }
 
     @Override
+    @CacheEvict(value = "merchants" , allEntries = true)
     public void delete(Merchant merchant) {
-
+        merchantDao.delete(merchant);
     }
 }

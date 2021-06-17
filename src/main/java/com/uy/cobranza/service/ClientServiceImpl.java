@@ -6,6 +6,7 @@ import com.uy.cobranza.model.Client;
 import com.uy.cobranza.model.Country;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class ClientServiceImpl implements ClientService {
+
+
+
 
     @Autowired
     private ClientDao clientDao;

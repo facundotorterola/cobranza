@@ -13,6 +13,7 @@ import com.uy.cobranza.utils.Constants;
 import com.uy.cobranza.utils.DateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,6 +25,8 @@ import java.util.stream.Collectors;
 @Service
 public class TransactionServiceImpl implements  TransactionService {
 
+    @Value("${MAX_NUMBER_OF_TRANSACTIONS_PER_COMPANY_DAY}")
+    private Integer maxNumberOfTransactionsPerCompanyPerDay;
 
     @Autowired
     private TransactionDao transactionDao;
@@ -132,7 +135,7 @@ public class TransactionServiceImpl implements  TransactionService {
                     throw  new BusinessException("El cliente excede la cantidad de transacciones diarias");
                 }
             }else{
-                if (count >= Constants.MAX_NUMBER_OF_TRANSACTIONS_PER_COMPANY_DAY){
+                if (count >= maxNumberOfTransactionsPerCompanyPerDay){
                     throw  new BusinessException("El cliente excede la cantidad de transacciones diarias");
                 }
             }
